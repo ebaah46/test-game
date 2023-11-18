@@ -21,8 +21,7 @@ namespace Game {
             Tree(std::string &assetPath, Position position);
 
             ~Tree();
-
-            void UpdatePosition(Position position) override;
+            void Update(sf::Time dt) override;
 
             void UpdateVisibility(bool visible) override{ m_visible = visible;}
 

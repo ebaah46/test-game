@@ -22,9 +22,9 @@ namespace Game {
 
             ~Background();
 
-            void UpdatePosition(Position position)  override;
+            void Update(sf::Time dt) override;
 
-            void UpdateVisibility(bool visible)  override{m_visible = visible;}
+            void UpdateVisibility(bool visible)  override { m_visible = visible; }
 
         private:
             std::string m_assetPath;

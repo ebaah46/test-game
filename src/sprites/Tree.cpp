@@ -24,8 +24,8 @@ Tree::~Tree() {
 // closing protocol
 }
 
-void Tree::UpdatePosition(Position position) {
-    m_tree->setPosition(position.x,position.y);
+void Tree::Update(sf::Time dt) {
+
 }
 
 

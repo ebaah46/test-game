@@ -26,6 +26,6 @@ Background::~Background() {
     // closing protocol
 }
 
-void Background::UpdatePosition(Position position) {
-    m_background->setPosition(position.x,position.y);
+void Background::Update(sf::Time dt) {
+    // no background update required for now.
 }

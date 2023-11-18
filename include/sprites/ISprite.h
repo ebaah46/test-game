@@ -6,6 +6,7 @@
 #define TIMBERMAN_ISPRITES_H
 
 #include "core/Utils.h"
+#include <SFML/Graphics.hpp>
 using namespace Game::Utils;
 
 /*
@@ -23,12 +24,10 @@ namespace Game{
             ~ISprite();
 
             /*
-             * This method provides access change the geometric position of a sprite
-             * in a frame.
-             *
-             * @param newXPosition Position value indicating the horizontal and vertical coordinates of the sprite on the screen.
-             */
-            virtual void UpdatePosition(Position position)  = 0;
+             * This method provides acess to update the internal details of the sprite.
+             * @param dt The time past since the last update
+             * */
+            virtual void Update(sf::Time dt) = 0;
 
             /*
              * This method provides access to change the visibility of a sprite.
@@ -36,6 +35,11 @@ namespace Game{
              * @param visible Boolean value indicating if the sprite is visible or not.
              */
             virtual void UpdateVisibility(bool visible)  = 0;
+
+            /*
+             * This method provides access to draw a sprite on the screen.
+             * */
+            virtual void Render() = 0;
         };
 
         }

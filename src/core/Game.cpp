@@ -3,13 +3,20 @@
 //
 
 #include "core/Game.h"
+#include "core/Utils.h"
 
-Game::Game(){
-    auto m_window = sf::RenderWindow{ { 1920u, 1080u }, "TimberMan " };
-    m_window.setFramerateLimit(144);
+using namespace Game::Utils;
+
+GameEngine::GameEngine(){
+    if(!m_window){
+        m_window = std::make_shared<sf::RenderWindow>(
+                sf::VideoMode(screenWidth, screenHeight), "Timberman"
+        );
+        m_window->setFramerateLimit(144);
+    }
 }
 
-void Game::ProcessEvents() const {
+void GameEngine::ProcessEvents() const {
     while(m_window->isOpen()){
         for (auto event = sf::Event{}; m_window->pollEvent(event);)
         {
@@ -21,7 +28,7 @@ void Game::ProcessEvents() const {
     }
 }
 
-void Game::Run() const {
+void GameEngine::Run() const {
     while(m_window->isOpen()){
         ProcessEvents();
         Update();
@@ -29,10 +36,14 @@ void Game::Run() const {
     }
 }
 
-void Game::Update() const {
-
+void GameEngine::Update() const {
+    for (auto &sprite: m_sprites){
+        sprite->Update(m_lastUpdate);
+    }
 }
 
-void Game::Render() const {
-
+void GameEngine::Render() const {
+    for(auto &sprite: m_sprites){
+        sprite->Render();
+    }
 }

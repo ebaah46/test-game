@@ -21,15 +21,18 @@ namespace Game{
         public:
             Cloud(std::string &assetPath, Position position);
 
-            ~Cloud();
+            ~Cloud() = default;
 
-            void UpdatePosition(Position position)  override;
+            void Update(sf::Time dt) override;
 
-            void UpdateVisibility(bool visible)  override;
+            void UpdateVisibility(bool visible)  override { m_visible = true; }
 
         private:
             std::string m_assetPath;
             std::shared_ptr<sf::Sprite> m_cloud;
+            bool m_visible = false;
+            float m_speed = 0.0;
+            bool m_ready = false;
         };
     }
 

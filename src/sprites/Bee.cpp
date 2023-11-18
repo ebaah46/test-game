@@ -8,7 +8,7 @@ using namespace Game;
 using namespace Game::Sprites;
 
 
-Bee::Bee(std::string &assetPath, Game::Utils::Position position) {
+Bee::Bee(std::string &assetPath, Position position) {
     if(assetPath.empty()){
         // Log error at this point
         return;
@@ -20,12 +20,31 @@ Bee::Bee(std::string &assetPath, Game::Utils::Position position) {
     }
     m_bee->setTexture(beeTexture);
     m_bee->setPosition(position.x,position.y);
+    m_ready = true;
 }
 
-Bee::~Bee(){
-    // closing protocol
-}
-
-void Bee::UpdatePosition(Game::Utils::Position position) {
-    m_bee->setPosition(position.x,position.y);
+void Bee::Update(sf::Time dt) {
+    // Bee moves from right to left
+    if(!m_ready){
+        // Log and exit
+        return;
+    }
+    // Before the bee is initially drawn in the view area
+    if (!m_visible){
+        srandom(time(nullptr)*10); //seed the random generator
+        m_speed = static_cast<float>((arc4random() % 200) + 200);
+        // how high the bee is
+        srandom(time(nullptr)*10);
+        // starting position of a bee
+        auto height = static_cast<float>((arc4random() % 500) + 500);
+        auto width = static_cast<float>(screenWidth);
+        m_bee->setPosition(width,height);
+        m_visible = true;
+    } else {
+        m_bee->setPosition(m_bee->getPosition().x - m_speed*dt.asSeconds(),m_bee->getPosition().y);
+        // At the edge of the screen, bee must restart route to new bee illusion
+        if(m_bee->getPosition().x < -100){
+            m_visible = false;
+        }
+    }
 }

@@ -18,12 +18,29 @@ Cloud::Cloud(std::string &assetPath, Position position){
     }
     m_cloud->setTexture(cloudTexture);
     m_cloud->setPosition(position.x,position.y);
+    m_ready = true;
 }
 
-Cloud::~Cloud(){
-    // closing protocol
-}
 
-void Cloud::UpdatePosition(Game::Utils::Position position) {
-    m_cloud->setPosition(position.x,position.y);
+void Cloud::Update(sf::Time dt) {
+    if(m_ready){
+        // Log and exit
+        return;
+    }
+    if (!m_visible){
+        srandom(time(nullptr)*10); //seed the random generator
+        m_speed = static_cast<float>((arc4random() % 200));
+        // how high the cloud is
+        srandom(time(nullptr)*10);
+        // starting position of a cloud
+        auto height = static_cast<float>((arc4random() % 150)+100);
+        m_cloud->setPosition(-200,height);
+        m_visible = true;
+    } else {
+        m_cloud->setPosition(m_cloud->getPosition().x + m_speed*dt.asSeconds(),m_cloud->getPosition().y);
+        // When cloud goes out of view
+        if(m_cloud->getPosition().x > screenWidth){
+            m_visible = false;
+        }
+    }
 }

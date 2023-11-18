@@ -5,7 +5,6 @@
 #ifndef TEST_GAME_GAME_H
 #define TEST_GAME_GAME_H
 
-#endif //TEST_GAME_GAME_H
 #include "IGame.h"
 
 #include <SFML/Graphics.hpp>
@@ -24,3 +23,5 @@ public:
 private:
     std::shared_ptr<sf::RenderWindow> m_window = nullptr;
 };
+
+#endif //TEST_GAME_GAME_H

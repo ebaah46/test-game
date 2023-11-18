@@ -10,7 +10,7 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(${PROJECT_NAME} src/main.cpp src/core/Game.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/core/Game.cpp include/sprites/ISprite.h src/sprites/Tree.cpp src/sprites/Background.cpp src/sprites/Bee.cpp src/sprites/Cloud.cpp include/core/Utils.h)
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)

@@ -10,10 +10,13 @@ Game::Game(){
 }
 
 void Game::ProcessEvents() const {
-    sf::Event event;
-    while(m_window->pollEvent(event)){
-        if (event.type == sf::Event::Closed){
-            m_window->close();
+    while(m_window->isOpen()){
+        for (auto event = sf::Event{}; m_window->pollEvent(event);)
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                m_window->close();
+            }
         }
     }
 }

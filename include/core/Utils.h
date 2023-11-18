@@ -22,6 +22,9 @@ namespace Game{
         struct Position{
             float x,y  = 0.0;
         };
+
+        static unsigned int screenWidth = 1920u;
+        static unsigned int  screenHeight = 1080u;
     }
 }
 #endif //TIMBERMAN_ASSETS_H

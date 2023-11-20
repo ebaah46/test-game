@@ -33,12 +33,12 @@ void GameEngine::Setup() {
     auto tree = std::make_shared<Tree>(tp,Position{810.0f,0.0f});
 
     std::string bPath(beePath);
-    auto bee = std::make_shared<Bee>(bPath,Position{50.0f,800.0f});
+    auto bee = std::make_shared<Bee>(bPath,Position{0.0f,800.0f});
 
     std::string cP(cloudPath);
-    auto cloud1 = std::make_shared<Cloud>(cP, Position{5.0,180});
-    auto cloud2 = std::make_shared<Cloud>(cP, Position{1300.0,250});
-    auto cloud3 = std::make_shared<Cloud>(cP, Position{500.0,50});
+    auto cloud1 = std::make_shared<Cloud>(cP, Position{0.0,150});
+    auto cloud2 = std::make_shared<Cloud>(cP, Position{0.0,250});
+    auto cloud3 = std::make_shared<Cloud>(cP, Position{0.0,50});
 
     m_sprites.emplace_back(background);
     m_sprites.emplace_back(tree);
@@ -53,6 +53,13 @@ void GameEngine::ProcessEvents() const {
         if (event.type == sf::Event::Closed){
             m_window->close();
         }
+
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+            m_window->close();
+        } else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return)){
+
+        }
+
     }
 }
 

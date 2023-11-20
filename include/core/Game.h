@@ -25,10 +25,18 @@ public:
     void Update() const override;
     void Render() const override;
 private:
+    void PauseGame();
+    void StartGame();
+    bool IsGamePaused();
+
+
     std::shared_ptr<sf::RenderWindow> m_window = nullptr;
     std::vector<std::shared_ptr<ISprite>> m_sprites;
     sf::Time m_lastUpdate;
-
+    bool m_gamePaused = false;
+    bool m_playerDied = false;
+    unsigned int m_timeRemaining = 0;
+    int m_score = 0;
 };
 
 #endif //TEST_GAME_GAME_H

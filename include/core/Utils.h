@@ -29,6 +29,8 @@ namespace Game{
         static const std::string beePath        = GetAssetPath() + "/graphics/bee.png";
         static const std::string cloudPath      = GetAssetPath() + "/graphics/cloud.png";
         static const std::string treePath       = GetAssetPath() + "/graphics/tree.png";
+
+        static const std::string fontPath       = GetAssetPath() + "/font/KOMIKAP_.ttf";
     }
 }
 #endif //TIMBERMAN_ASSETS_H

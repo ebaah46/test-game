@@ -19,9 +19,9 @@ namespace Game{
 
         class ISprite {
         public:
-            ISprite();
+            ISprite() =default;
 
-            ~ISprite();
+            ~ISprite()=default;
 
             /*
              * This method provides acess to update the internal details of the sprite.
@@ -39,7 +39,7 @@ namespace Game{
             /*
              * This method provides access to draw a sprite on the screen.
              * */
-            virtual void Render() = 0;
+            virtual void Render(std::shared_ptr<sf::RenderWindow> window) = 0;
         };
 
         }

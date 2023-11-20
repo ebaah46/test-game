@@ -3,8 +3,11 @@
 //
 //#include "core/Game.h"
 #include <SFML/Graphics.hpp>
+#include "core/Game.h"
+
 int main() {
 
+/*
     auto window = sf::RenderWindow{ { 1920u, 1080u }, "Timberman" };
     window.setFramerateLimit(144);
     sf::Texture textureBackground;
@@ -25,14 +28,14 @@ int main() {
                 window.close();
             }
         }
-
         window.clear();
         window.draw(spriteBackground);
         window.display();
     }
-/*    auto window = sf::RenderWindow(sf::VideoMode(1920u, 1080u), "SFML window");
-    window.setFramerateLimit(144);
 */
 
+auto engine = std::make_shared<GameEngine>();
+engine->Setup();
+engine->Run();
 
 }

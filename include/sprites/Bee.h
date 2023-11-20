@@ -23,11 +23,14 @@ namespace Game{
 
             void Update(sf::Time dt) override;
 
-            void UpdateVisibility(bool visible)  override{m_visible = visible;};
+            void UpdateVisibility(bool visible)  override{m_visible = visible;}
+
+            void Render(std::shared_ptr<sf::RenderWindow> window) override;
 
         private:
             std::string m_assetPath;
             std::shared_ptr<sf::Sprite> m_bee;
+            std::shared_ptr<sf::Texture> m_beeTexture;
             bool m_visible = false;
             float m_speed = 0.0;
             bool m_ready = false;

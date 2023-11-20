@@ -13,12 +13,13 @@ Bee::Bee(std::string &assetPath, Position position) {
         // Log error at this point
         return;
     }
-    sf::Texture beeTexture;
-    auto isLoaded = beeTexture.loadFromFile(assetPath);
+    m_beeTexture = std::make_shared<sf::Texture>();
+    auto isLoaded = m_beeTexture->loadFromFile(assetPath);
     if (!isLoaded){
         // Log error at this point
     }
-    m_bee->setTexture(beeTexture);
+    m_bee = std::make_shared<sf::Sprite>();
+    m_bee->setTexture(*m_beeTexture);
     m_bee->setPosition(position.x,position.y);
     m_ready = true;
 }
@@ -47,4 +48,8 @@ void Bee::Update(sf::Time dt) {
             m_visible = false;
         }
     }
+}
+
+void Bee::Render(std::shared_ptr<sf::RenderWindow> window) {
+    window->draw(*m_bee);
 }

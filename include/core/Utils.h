@@ -25,6 +25,10 @@ namespace Game{
 
         static unsigned int screenWidth = 1920u;
         static unsigned int  screenHeight = 1080u;
+        static const std::string backgroundPath = GetAssetPath() + "/graphics/background.png";
+        static const std::string beePath        = GetAssetPath() + "/graphics/bee.png";
+        static const std::string cloudPath      = GetAssetPath() + "/graphics/cloud.png";
+        static const std::string treePath       = GetAssetPath() + "/graphics/tree.png";
     }
 }
 #endif //TIMBERMAN_ASSETS_H

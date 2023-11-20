@@ -12,12 +12,13 @@ Tree::Tree(std::string &assetPath,Position position) {
         // Log error at this point
         return;
     }
-    sf::Texture treeTexture;
-    auto isLoaded = treeTexture.loadFromFile(assetPath);
+    m_treeTexture = std::make_shared<sf::Texture >();
+    auto isLoaded = m_treeTexture->loadFromFile(assetPath);
     if (!isLoaded){
         // Log error at this point
     }
-    m_tree->setTexture(treeTexture);
+    m_tree = std::make_shared<sf::Sprite>();
+    m_tree->setTexture(*m_treeTexture);
     m_tree->setPosition(position.x,position.y);
 }
 Tree::~Tree() {
@@ -28,4 +29,7 @@ void Tree::Update(sf::Time dt) {
 
 }
 
+void Tree::Render(std::shared_ptr<sf::RenderWindow> window) {
+    window->draw(*m_tree);
+}
 

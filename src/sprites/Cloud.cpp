@@ -11,12 +11,13 @@ Cloud::Cloud(std::string &assetPath, Position position){
         // Log error at this point
         return;
     }
-    sf::Texture cloudTexture;
-    auto isLoaded = cloudTexture.loadFromFile(assetPath);
+    m_cloudTexture = std::make_shared<sf::Texture>();
+    auto isLoaded = m_cloudTexture->loadFromFile(assetPath);
     if (!isLoaded){
         // Log error at this point
     }
-    m_cloud->setTexture(cloudTexture);
+    m_cloud = std::make_shared<sf::Sprite>();
+    m_cloud->setTexture(*m_cloudTexture);
     m_cloud->setPosition(position.x,position.y);
     m_ready = true;
 }
@@ -43,4 +44,8 @@ void Cloud::Update(sf::Time dt) {
             m_visible = false;
         }
     }
+}
+
+void Cloud::Render(std::shared_ptr<sf::RenderWindow> window) {
+    window->draw(*m_cloud);
 }

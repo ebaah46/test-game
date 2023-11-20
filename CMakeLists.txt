@@ -14,5 +14,9 @@ add_executable(${PROJECT_NAME} src/main.cpp src/core/Game.cpp include/sprites/IS
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
-
+message("${CMAKE_SOURCE_DIR}")
+add_definitions(-DPROJECT_PATH=\"${CMAKE_SOURCE_DIR}\")
+set(ASSET_DIR ${CMAKE_SOURCE_DIR}/assets)
+message("Asset directory is:")
+message(${ASSET_DIR})
 install(TARGETS ${PROJECT_NAME})

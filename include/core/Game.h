@@ -17,16 +17,18 @@ class GameEngine :public IGame{
 
 public:
     GameEngine();
+    void Setup();
+public:
     // from IGame
     void Run() const override;
     void ProcessEvents() const override;
     void Update() const override;
     void Render() const override;
-
 private:
     std::shared_ptr<sf::RenderWindow> m_window = nullptr;
     std::vector<std::shared_ptr<ISprite>> m_sprites;
     sf::Time m_lastUpdate;
+
 };
 
 #endif //TEST_GAME_GAME_H

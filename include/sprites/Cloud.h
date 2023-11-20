@@ -27,9 +27,12 @@ namespace Game{
 
             void UpdateVisibility(bool visible)  override { m_visible = true; }
 
+            void Render(std::shared_ptr<sf::RenderWindow> window) override;
+
         private:
             std::string m_assetPath;
             std::shared_ptr<sf::Sprite> m_cloud;
+            std::shared_ptr<sf::Texture> m_cloudTexture;
             bool m_visible = false;
             float m_speed = 0.0;
             bool m_ready = false;

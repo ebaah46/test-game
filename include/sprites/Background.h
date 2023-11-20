@@ -26,10 +26,14 @@ namespace Game {
 
             void UpdateVisibility(bool visible)  override { m_visible = visible; }
 
+            void Render(std::shared_ptr<sf::RenderWindow> window) override;
+
         private:
             std::string m_assetPath;
-            std::shared_ptr<sf::Sprite> m_background;
-            bool m_visible = false;
+            std::shared_ptr<sf::Sprite> m_background = nullptr;
+            std::shared_ptr<sf::Texture> m_backgroundTexture = nullptr;
+            bool m_visible = true;
+            bool m_ready = false;
         };
     }
 }

@@ -2,13 +2,14 @@
 // Created by Emmanuel Baah on 20.11.2023.
 //
 
-#include "sprites/Hud.h"
+#include "core/Hud.h"
+#include "core/Utils.h"
 
 using namespace Game;
-using namespace Game::Sprites;
+using namespace Game::Utils;
 
 
-Hud::Hud(std::string &assetPath, Position position) {
+Hud::Hud(std::string &assetPath) {
     if(assetPath.empty()){
         // Log error at this point
         return;
@@ -39,7 +40,7 @@ Hud::Hud(std::string &assetPath, Position position) {
     m_timeBar = std::make_shared<sf::RectangleShape>();
     m_timeBar->setFillColor(sf::Color::Red);
     m_timeBar->setSize(sf::Vector2f(m_timeBarWidth,m_timeBarHeight));
-    m_timeBar->setPosition(screenWidth/(2)- m_timeBarWidth / 2,980);
+    m_timeBar->setPosition(screenWidth/(2.0)- m_timeBarWidth / 2.0,980);
 
 }
 
@@ -47,6 +48,12 @@ void Hud::Update(sf::Time dt) {
     std::stringstream ss;
     ss<<"Score:"<<m_score;
     m_scoreText->setString(ss.str());
+    m_timeRemaining -= dt.asSeconds();
+    m_timeBar->setSize(sf::Vector2f(m_timeBarWithSecond * m_timeRemaining,m_timeBarHeight));
+    if(m_timeRemaining <= 0.0f){
+        // pause game
+        // trigger game pause event
+    }
 }
 
 void Hud::Render(std::shared_ptr<sf::RenderWindow> window) {
@@ -55,4 +62,9 @@ void Hud::Render(std::shared_ptr<sf::RenderWindow> window) {
 
 void Hud::RenderMessage(std::shared_ptr<sf::RenderWindow> window) {
     window->draw(*m_messageText);
+}
+
+void Hud::ResetGameData(){
+    m_timeRemaining = 6.0;
+    m_score = 0.0;
 }

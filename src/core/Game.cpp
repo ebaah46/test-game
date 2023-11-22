@@ -8,6 +8,7 @@
 #include "sprites/Tree.h"
 #include "sprites/Bee.h"
 #include "sprites/Cloud.h"
+#include "core/Hud.h"
 
 #include "iostream"
 
@@ -24,8 +25,13 @@ GameEngine::GameEngine(){
 }
 
 void GameEngine::Setup() {
-    // Initialize all sprites in game
+    m_clock = std::make_shared<sf::Clock>();
+    m_lastUpdate = std::make_shared<sf::Time>();
 
+    std::string fp(fontPath);
+    m_hud = std::make_shared<Hud>(fp);
+//    hud->
+    // Initialize all sprites in game
     std::string bp(backgroundPath);
     auto background = std::make_shared<Background>(bp,Position{0.0f,0.0f});
 
@@ -74,8 +80,12 @@ void GameEngine::Run() const {
 }
 
 void GameEngine::Update() const {
+    if(!m_gamePaused){
+        auto dt = m_clock->restart();
+        m_hud->Update(dt);
+    }
     for (auto &sprite: m_sprites){
-        sprite->Update(m_lastUpdate);
+        sprite->Update(*m_lastUpdate);
     }
 }
 

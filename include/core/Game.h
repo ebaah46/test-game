@@ -7,11 +7,13 @@
 
 #include "IGame.h"
 #include "sprites/ISprite.h"
+#include "Hud.h"
 
 #include <SFML/Graphics.hpp>
 #include <memory>
 
 using namespace Game::Sprites;
+using namespace Game;
 
 class GameEngine :public IGame{
 
@@ -32,10 +34,12 @@ private:
 
     std::shared_ptr<sf::RenderWindow> m_window = nullptr;
     std::vector<std::shared_ptr<ISprite>> m_sprites;
-    sf::Time m_lastUpdate;
+    std::shared_ptr<sf::Time> m_lastUpdate;
+    std::shared_ptr<sf::Clock> m_clock;
     bool m_gamePaused = false;
     bool m_playerDied = false;
     unsigned int m_timeRemaining = 0;
+    std::shared_ptr<Hud>m_hud;
     int m_score = 0;
 };
 
